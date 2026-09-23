@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+
+<html lang="id">
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Album Kita ♡</title>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    :root {
+        --pink: #ed91b4;
+        --pink-soft: #f7bfd3;
+
+        --text: #fff;
+        --muted: rgba(255,255,255,.62);
+
+        --background: #110c10;
+    }
+
+    html,
+    body {
+        min-height: 100%;
+    }
+
+    body {
+
+        min-height: 100vh;
+
+        color: var(--text);
+
+        background:
+            radial-gradient(
+                circle at 20% 0%,
+                rgba(234, 132, 174, .18),
+                transparent 35%
+            ),
+            radial-gradient(
+                circle at 90% 100%,
+                rgba(165, 139, 214, .16),
+                transparent 35%
+            ),
+            var(--background);
+
+        font-family:
+            Inter,
+            ui-sans-serif,
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            sans-serif;
+
+        overflow-x: hidden;
+    }
+
+    /* =====================================================
+       HEADER
+    ===================================================== */
+
+    .topbar {
+
+        position: fixed;
+
+        z-index: 20;
+
+        top: 0;
+        left: 0;
+        right: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 18px 20px;
+
+        background:
+            linear-gradient(
+                rgba(17,12,16,.9),
+                rgba(17,12,16,.25),
+                transparent
+            );
+
+        backdrop-filter:
+            blur(7px);
+    }
+
+    .back {
+
+        width: 44px;
+        height: 44px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 15px;
+
+        color: white;
+
+        background:
+            rgba(255,255,255,.08);
+
+        border:
+            1px solid
+            rgba(255,255,255,.12);
+
+        backdrop-filter:
+            blur(18px);
+
+        font-size: 20px;
+
+        transition:
+            transform .25s ease,
+            background .25s ease;
+    }
+
+    .back:hover {
+
+        transform:
+            translateX(-3px);
+
+        background:
+            rgba(255,255,255,.14);
+    }
+
+    .logo {
+
+        font-size: 14px;
+
+        font-weight: 700;
+
+        letter-spacing: -.1px;
+    }
+
+    .logo span {
+        color: var(--pink);
+    }
+
+    /* =====================================================
+       MAIN
+    ===================================================== */
+
+    main {
+
+        min-height: 100vh;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        padding:
+            95px 18px 55px;
+    }
+
+    .media-area {
+
+        position: relative;
+
+        width:
+            min(
+                1050px,
+                100%
+            );
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+    }
+
+    .media-area::before {
+
+        content: "";
+
+        position: absolute;
+
+        width: 55%;
+        height: 55%;
+
+        border-radius: 50%;
+
+        background:
+            rgba(238, 143, 181, .13);
+
+        filter:
+            blur(100px);
+
+        pointer-events: none;
+    }
+
+    .media {
+
+        position: relative;
+
+        z-index: 2;
+
+        display: block;
+
+        max-width: 100%;
+
+        max-height:
+            70vh;
+
+        object-fit:
+            contain;
+
+        border-radius:
+            24px;
+
+        background:
+            #090709;
+
+        box-shadow:
+            0 35px 100px rgba(0,0,0,.58),
+            0 0 0 1px rgba(255,255,255,.07);
+    }
+
+    video.media {
+
+        width:
+            min(
+                920px,
+                100%
+            );
+
+        height: auto;
+    }
+
+    /* =====================================================
+       INFO
+    ===================================================== */
+
+    .info {
+
+        width:
+            min(
+                700px,
+                100%
+            );
+
+        margin-top: 27px;
+
+        text-align: center;
+
+        position: relative;
+        z-index: 3;
+    }
+
+    .badge {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        padding:
+            7px 12px;
+
+        border-radius:
+            999px;
+
+        color:
+            var(--pink-soft);
+
+        background:
+            rgba(237,145,180,.10);
+
+        border:
+            1px solid
+            rgba(237,145,180,.17);
+
+        font-size:
+            10px;
+
+        font-weight:
+            800;
+
+        letter-spacing:
+            1.5px;
+
+        text-transform:
+            uppercase;
+    }
+
+    .filename {
+
+        margin-top: 12px;
+
+        font-size:
+            clamp(
+                16px,
+                3vw,
+                21px
+            );
+
+        font-weight: 700;
+
+        word-break:
+            break-word;
+    }
+
+    .description {
+
+        max-width: 500px;
+
+        margin:
+            8px auto 0;
+
+        color:
+            var(--muted);
+
+        font-size:
+            13px;
+
+        line-height:
+            1.7;
+    }
+
+    /* =====================================================
+       ERROR
+    ===================================================== */
+
+    .error {
+
+        width:
+            min(
+                500px,
+                100%
+            );
+
+        padding:
+            45px 25px;
+
+        text-align:
+            center;
+
+        border-radius:
+            28px;
+
+        background:
+            rgba(255,255,255,.055);
+
+        border:
+            1px solid
+            rgba(255,255,255,.09);
+
+        box-shadow:
+            0 30px 70px rgba(0,0,0,.25);
+    }
+
+    .error-icon {
+
+        margin-bottom:
+            15px;
+
+        font-size:
+            38px;
+
+        color:
+            var(--pink);
+    }
+
+    .error h2 {
+
+        font-size:
+            21px;
+    }
+
+    .error p {
+
+        margin-top:
+            8px;
+
+        color:
+            var(--muted);
+
+        font-size:
+            13px;
+
+        line-height:
+            1.6;
+    }
+
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+
+    @media (max-width: 650px) {
+
+        .topbar {
+            padding:
+                13px;
+        }
+
+        .back {
+
+            width:
+                41px;
+
+            height:
+                41px;
+
+            border-radius:
+                13px;
+        }
+
+        main {
+
+            padding:
+                78px 12px 45px;
+        }
+
+        .media {
+
+            max-height:
+                67vh;
+
+            border-radius:
+                18px;
+        }
+
+        video.media {
+
+            max-height:
+                60vh;
+        }
+
+        .info {
+
+            margin-top:
+                20px;
+        }
+
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<!-- =====================================================
+     TOPBAR
+====================================================== -->
+
+<nav class="topbar">
+
+    <a
+        href="../index.html"
+        class="back"
+        aria-label="Kembali"
+    >
+        ←
+    </a>
+
+    <div class="logo">
+        Album <span>♡</span> Kita
+    </div>
+
+    <div
+        style="
+            width:44px;
+        "
+    ></div>
+
+</nav>
+
+
+<!-- =====================================================
+     CONTENT
+====================================================== -->
+
+<main id="content">
+
+    <div class="error">
+
+        <div class="error-icon">
+            ♡
+        </div>
+
+        <h2>
+            Membuka kenangan...
+        </h2>
+
+        <p>
+            Sebentar, sedang mengambil momen ini.
+        </p>
+
+    </div>
+
+</main>
+
+
+<script>
+
+    /*
+     * =====================================================
+     * GITHUB CONFIG
+     * =====================================================
+     *
+     * HARUS SAMA DENGAN index.html
+     */
+
+    const CONFIG = {
+        owner: "dpwoffc",
+        repo: "album",
+        branch: "main"
+
+    };
+
+
+    /*
+     * =====================================================
+     * URL PARAMETER
+     * =====================================================
+     */
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+    const type =
+        params.get("type");
+
+    const id =
+        params.get("id");
+
+
+    /*
+     * =====================================================
+     * ELEMENT
+     * =====================================================
+     */
+
+    const content =
+        document.getElementById(
+            "content"
+        );
+
+
+    /*
+     * =====================================================
+     * ESCAPE
+     * =====================================================
+     */
+
+    function escapeHTML(
+        value
+    ) {
+
+        return String(value)
+            .replaceAll(
+                "&",
+                "&amp;"
+            )
+            .replaceAll(
+                "<",
+                "&lt;"
+            )
+            .replaceAll(
+                ">",
+                "&gt;"
+            )
+            .replaceAll(
+                '"',
+                "&quot;"
+            )
+            .replaceAll(
+                "'",
+                "&#039;"
+            );
+    }
+
+
+    /*
+     * =====================================================
+     * NAME
+     * =====================================================
+     */
+
+    function formatName(
+        filename
+    ) {
+
+        return filename
+            .replace(
+                /\.[^/.]+$/,
+                ""
+            )
+            .replaceAll(
+                "_",
+                " "
+            )
+            .replaceAll(
+                "-",
+                " "
+            );
+    }
+
+
+    /*
+     * =====================================================
+     * ERROR
+     * =====================================================
+     */
+
+    function showError(
+        title,
+        message
+    ) {
+
+        content.innerHTML = `
+
+            <div class="error">
+
+                <div class="error-icon">
+                    ♡
+                </div>
+
+                <h2>
+                    ${escapeHTML(title)}
+                </h2>
+
+                <p>
+                    ${escapeHTML(message)}
+                </p>
+
+            </div>
+
+        `;
+    }
+
+
+    /*
+     * =====================================================
+     * GET RAW URL
+     * =====================================================
+     */
+
+    function getMediaURL(
+        folder,
+        filename
+    ) {
+
+        return (
+            `https://${CONFIG.owner}.github.io/` +
+            `${CONFIG.repo}/database/` +
+            `${folder}/${encodeURIComponent(filename)}`
+        );
+    }
+
+
+    /*
+     * =====================================================
+     * VALIDATION
+     * =====================================================
+     */
+
+    if (
+        !type ||
+        !id ||
+        ![
+            "foto",
+            "video"
+        ].includes(type)
+    ) {
+
+        showError(
+            "Kenangan tidak ditemukan",
+            "Link media yang kamu buka tidak valid."
+        );
+
+    } else {
+
+        let filename;
+
+        try {
+
+            filename =
+                decodeURIComponent(id);
+
+        } catch {
+
+            showError(
+                "Kenangan tidak ditemukan",
+                "Nama file tidak valid."
+            );
+
+            throw new Error(
+                "Invalid media id"
+            );
+        }
+
+
+        const folder =
+            type === "foto"
+                ? "foto"
+                : "video";
+
+        const mediaURL =
+            getMediaURL(
+                folder,
+                filename
+            );
+
+        const safeName =
+            escapeHTML(
+                formatName(filename)
+            );
+
+
+        /*
+         * =================================================
+         * FOTO
+         * =================================================
+         */
+
+        if (type === "foto") {
+
+            content.innerHTML = `
+
+                <div class="media-area">
+
+                    <img
+                        class="media"
+                        src="${mediaURL}"
+                        alt="${safeName}"
+                        onerror="mediaError()"
+                    >
+
+                </div>
+
+                <div class="info">
+
+                    <div class="badge">
+                        📸 &nbsp; Foto
+                    </div>
+
+                    <div class="filename">
+                        ${safeName}
+                    </div>
+
+                    <div class="description">
+                        Satu momen kecil,
+                        satu cerita yang tetap kita simpan. ♡
+                    </div>
+
+                </div>
+
+            `;
+        }
+
+
+        /*
+         * =================================================
+         * VIDEO
+         * =================================================
+         */
+
+        if (type === "video") {
+
+            content.innerHTML = `
+
+                <div class="media-area">
+
+                    <video
+                        class="media"
+                        controls
+                        playsinline
+                        preload="metadata"
+                        onerror="mediaError()"
+                    >
+
+                        <source
+                            src="${mediaURL}"
+                        >
+
+                        Browser kamu tidak mendukung
+                        pemutaran video.
+
+                    </video>
+
+                </div>
+
+                <div class="info">
+
+                    <div class="badge">
+                        🎞️ &nbsp; Video
+                    </div>
+
+                    <div class="filename">
+                        ${safeName}
+                    </div>
+
+                    <div class="description">
+                        Karena beberapa momen
+                        memang lebih indah kalau bisa
+                        diputar kembali. ♡
+                    </div>
+
+                </div>
+
+            `;
+        }
+
+
+        document.title =
+            `${formatName(filename)} — Album Kita ♡`;
+    }
+
+
+    /*
+     * =====================================================
+     * MEDIA ERROR
+     * =====================================================
+     */
+
+    function mediaError() {
+
+        showError(
+            "Kenangan tidak ditemukan",
+            "File mungkin sudah dipindahkan, dihapus, atau nama file tidak sesuai."
+        );
+    }
+
+</script>
+```
+
+</body>
+</html>
